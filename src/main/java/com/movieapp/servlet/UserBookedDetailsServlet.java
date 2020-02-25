@@ -22,30 +22,27 @@ import com.movieapp.model.TicketBooking;
 @WebServlet("/UserBookedDetailsServlet")
 public class UserBookedDetailsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
-		Integer userId = (Integer)session.getAttribute("USER_ID");
-		
-		if(userId==null)
-		{
+		Integer userId = (Integer) session.getAttribute("USER_ID");
+
+		if (userId == null) {
 			response.sendRedirect("Login.jsp");
+		} else {
+			TicketBookingDAOImpl obj = new TicketBookingDAOImpl();
+			List<TicketBooking> list = new ArrayList<TicketBooking>();
+			try {
+				list = obj.getUserBookedDetails(userId);
+			} catch (DbException e) {
+				e.printStackTrace();
+			}
+			request.setAttribute("UserBookedDetails", list);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("UserBookedDetails.jsp");
+			dispatcher.forward(request, response);
 		}
-		else
-		{
-		TicketBookingDAOImpl obj =  new  TicketBookingDAOImpl();
-		List<TicketBooking> list = new ArrayList<TicketBooking>();
-		try {
-			list=obj.getUserBookedDetails(userId);
-		} catch (DbException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("UserBookedDetails", list);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("UserBookedDetails.jsp");
-		dispatcher.forward(request, response);
-		}
-	
-}
+
+	}
 }

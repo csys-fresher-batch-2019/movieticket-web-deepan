@@ -18,33 +18,34 @@ import com.movieapp.model.MovieList;
 @WebServlet("/AddMovieServlet")
 public class AddMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    		List<MovieList> List = new ArrayList<MovieList>();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    		MovieList ml = new MovieList();
+		List<MovieList> List = new ArrayList<MovieList>();
 
-    		ml.setMovieName(request.getParameter("Moviename"));
-    		ml.setMovieDuration(Integer.parseInt(request.getParameter("duration")));
-    		ml.setMovieLanguage(request.getParameter("Language"));
-    		ml.setMovieRating(Integer.parseInt(request.getParameter("Rating")));
-    		ml.setMovieType(request.getParameter("MovieType"));
-    		ml.setReleasedDate(LocalDate.parse(request.getParameter("releaseddate")));
-    		ml.setImageUrl(request.getParameter("image"));
-    		List.add(ml);
+		MovieList ml = new MovieList();
 
-    		MovieListDAOImpl obj = new MovieListDAOImpl();
+		ml.setMovieName(request.getParameter("Moviename"));
+		ml.setMovieDuration(Integer.parseInt(request.getParameter("duration")));
+		ml.setMovieLanguage(request.getParameter("Language"));
+		ml.setMovieRating(Integer.parseInt(request.getParameter("Rating")));
+		ml.setMovieType(request.getParameter("MovieType"));
+		ml.setReleasedDate(LocalDate.parse(request.getParameter("releaseddate")));
+		ml.setImageUrl(request.getParameter("image"));
+		List.add(ml);
 
-    		for (MovieList movie : List) {
-    			try {
-					obj.addMovie(movie);
-				} catch (DbException e) {
-					e.printStackTrace();
-				}
-    			System.out.println(movie);
+		MovieListDAOImpl obj = new MovieListDAOImpl();
 
-    	}}
+		for (MovieList movie : List) {
+			try {
+				obj.addMovie(movie);
+			} catch (DbException e) {
+				e.printStackTrace();
+			}
+			System.out.println(movie);
 
-	
+		}
+	}
+
 }

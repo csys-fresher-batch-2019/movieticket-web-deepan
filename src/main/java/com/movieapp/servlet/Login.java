@@ -1,6 +1,5 @@
 package com.movieapp.servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,36 +18,31 @@ import com.movieapp.model.UserInformation;
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
-	
-		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			UserInformationImpl uii = new UserInformationImpl();
-			UserInformation ui = new UserInformation();
-			ui.setEmailId(request.getParameter("EmailId"));
-			ui.setEpassword(request.getParameter("Password"));
-			PrintWriter out=response.getWriter();
-				Integer userId =null;
-				try {
-					userId = uii.login(ui.getEmailId(), ui.getEpassword());
-					System.out.println(userId);
-					if (userId == null)
-					{
-						response.sendRedirect("Login.jsp?errorMessage=Invalid Login");
-	
-					}
-					else
-					{
-						out.println("login success");
-						HttpSession session = request.getSession();
-						session.setAttribute("USER_ID", userId);
-						response.sendRedirect("HomeMovies.jsp");
-						
-					}
-				} 
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-				
 
-			
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		UserInformationImpl uii = new UserInformationImpl();
+		UserInformation ui = new UserInformation();
+		ui.setEmailId(request.getParameter("EmailId"));
+		ui.setEpassword(request.getParameter("Password"));
+		PrintWriter out = response.getWriter();
+		Integer userId = null;
+		try {
+			userId = uii.login(ui.getEmailId(), ui.getEpassword());
+			System.out.println(userId);
+			if (userId == null) {
+				response.sendRedirect("Login.jsp?errorMessage=Invalid Login");
+
+			} else {
+				out.println("login success");
+				HttpSession session = request.getSession();
+				session.setAttribute("USER_ID", userId);
+				response.sendRedirect("HomeMovies.jsp");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		}
+
+	}
+}

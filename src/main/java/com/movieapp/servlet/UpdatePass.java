@@ -1,6 +1,5 @@
 package com.movieapp.servlet;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -18,19 +17,18 @@ import com.movieapp.dao.impl.UserInformationImpl;
  */
 @WebServlet("/UpdatePass")
 public class UpdatePass extends HttpServlet {
-	
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		UserInformationImpl im = new UserInformationImpl();
-		PrintWriter out=response.getWriter();
-		HttpSession sess=request.getSession(false);
-		String email=(String)sess.getAttribute("email");
-		
+		PrintWriter out = response.getWriter();
+		HttpSession sess = request.getSession(false);
+		String email = (String) sess.getAttribute("email");
+
 		String password = request.getParameter("pass");
 		System.out.println(email + "-" + password);
 		try {
-		
+
 			boolean msg = im.updatePassword(email, password);
 			out.println("updated" + msg);
 			response.sendRedirect("Login.jsp");
@@ -38,7 +36,7 @@ public class UpdatePass extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

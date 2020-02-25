@@ -13,14 +13,13 @@ import com.movieapp.DbException;
 import com.movieapp.dao.TicketBookingDAO;
 import com.movieapp.dao.impl.TicketBookingDAOImpl;
 
-
 @WebServlet("/CancelTicketServlet")
 public class CancelTicketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String bookedId = request.getParameter("bookedId");
 		System.out.println(bookedId);
 
@@ -30,8 +29,8 @@ public class CancelTicketServlet extends HttpServlet {
 		} catch (DbException e) {
 			e.printStackTrace();
 		}
-		
-		PrintWriter out=response.getWriter();
+
+		PrintWriter out = response.getWriter();
 		out.print("Your Ticeket is successfully cancelled");
 		response.sendRedirect("HomeMovies.jsp");
 	}

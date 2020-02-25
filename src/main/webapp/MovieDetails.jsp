@@ -1,7 +1,7 @@
 <%@page import="com.movieapp.model.MovieList"%>
-<%@page import="java.util.List" %>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
  List<MovieList> list=(List<MovieList>)request.getAttribute("MOVIE_LIST");
 if (list !=null){
 for (MovieList m : list) 
@@ -28,18 +28,19 @@ else{
 	out.println("No records");
 }
 %>
-<%
+	<%
 for(MovieList m :list){%>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-<%}%>
-}
+	<div class="card" style="width: 18rem;">
+		<img src="..." class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title">Card title</h5>
+			<p class="card-text">Some quick example text to build on the card
+				title and make up the bulk of the card's content.</p>
+			<a href="#" class="btn btn-primary">Go somewhere</a>
+		</div>
+	</div>
+	<%}%>
+	}
 
 
 </body>
