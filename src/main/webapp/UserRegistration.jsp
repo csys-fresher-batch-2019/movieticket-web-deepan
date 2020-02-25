@@ -179,7 +179,7 @@ button[type="submit"]{
 					<div class="form-group">
 						<div class="form-label">Password :-</div>
 						<div class="form-input">
-							<input type="Password" name="Password" maxlength="8" />
+							<input type="Password" name="Password" minlength="8" />
 						</div>
 					</div>
 
